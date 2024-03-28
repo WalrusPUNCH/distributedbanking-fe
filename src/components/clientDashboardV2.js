@@ -10,7 +10,7 @@ import {userBankAccounts} from "../api/bankAccount";
 
 export const ClientDashboardV2 = (props) => {
     const { logout, user } = props;
-    const [ page, setPage ] = useState('home');
+    const [page, setPage] = useState('home');
     const [notif, setNotif] = useState({message: '', style: ''});
     const [deleteUser, setDeleteUser] = useState(false);
     const [editModal, setEditModal] = useState(false);
@@ -47,19 +47,7 @@ export const ClientDashboardV2 = (props) => {
         fetchIdentityInformation();
     }, [isUpdate, deleteUser]);
     
-    
-    useEffect(() => {
-        const deleteUserIdentityLocal = async() =>{
-            await deleteUserIdentity();
-            setDeleteUser(false);
-        }
         
-        if (deleteUser) {
-            deleteUserIdentityLocal();
-        }
-    }, [deleteUser]);
-    
-    
     useEffect(() => {
         const updateIdentityInformationLocal = async(newIdentityInformation) =>
         {
@@ -71,6 +59,19 @@ export const ClientDashboardV2 = (props) => {
             updateIdentityInformationLocal(newAccount);
         }
     }, [isUpdate]);
+
+    
+    useEffect(() => {
+        const deleteUserIdentityLocal = async() =>{
+            await deleteUserIdentity();
+            setDeleteUser(false);
+        }
+
+        if (deleteUser) {
+            deleteUserIdentityLocal();
+        }
+    }, [deleteUser]);
+
 
     useEffect(() => {
         const fetchBankAccounts = async () => {
@@ -106,6 +107,7 @@ export const ClientDashboardV2 = (props) => {
                 <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout}/>
                 <MainClientContentV2 identityInformation={identityInformation}
                                      accounts={bankAccounts}
+                                     setUpdateBankAccounts={setUpdateBankAccounts}
                                      setEditModal={setEditModal}
                                      setDeleteUser={setDeleteUser} />
                 {modal}
@@ -117,7 +119,7 @@ export const ClientDashboardV2 = (props) => {
         return (
             <main>
                 <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout}/>
-                <CreateAccountPageV2/>
+                <CreateAccountPageV2 setUpdateBankAccounts={setUpdateBankAccounts}/>
             </main>
         )
     }

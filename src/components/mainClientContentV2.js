@@ -2,16 +2,25 @@
 import React, { useEffect, useState } from "react";
 import { deleteBankAccount } from "../api/bankAccount";
 import { IdentityInformation } from "./identityInformation";
+import { delay } from "./utils";
 
 export const MainClientContentV2 = props => {
-    const { identityInformation, accounts, setEditModal, setDeleteUser } = props;
+    const { identityInformation, accounts, setUpdateBankAccounts, setEditModal, setDeleteUser } = props;
+    
     const [deleteAccountId, setDeleteAccountId] = useState(null);
     
     useEffect( () => {
-        if(deleteAccountId !== null) {
-            deleteBankAccount(deleteAccountId)
-            setDeleteAccountId(null);
-        }
+        const deleteBankAccountLocal = async () => {
+            if(deleteAccountId !== null) {
+                deleteBankAccount(deleteAccountId)
+                await delay(500);
+                setDeleteAccountId(null);
+                setUpdateBankAccounts(true);
+            }
+        };
+
+        deleteBankAccountLocal();
+        
     }, [deleteAccountId]);
     
     

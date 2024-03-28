@@ -44,3 +44,7 @@ function addUserToUsers(user) {
     filteredUsers.push(user);
     return filteredUsers;
 }
+
+export function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

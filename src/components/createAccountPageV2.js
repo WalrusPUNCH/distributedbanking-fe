@@ -2,7 +2,9 @@
 import { Notif } from "./notif";
 import { createBankAccount } from "../api/bankAccount";
 
-export const    CreateAccountPageV2 = (props) => {
+export const CreateAccountPageV2 = (props) => {
+    const { setUpdateBankAccounts } = props;
+    
     const [notif, setNotif] = useState({message: 'Create a new client account.', style: 'left'});
 
     const createNewAccount = async (accountData) => {
@@ -10,15 +12,17 @@ export const    CreateAccountPageV2 = (props) => {
             return input === ''
         });
 
-        if(emptyInputs.length > 0) {
+        if (emptyInputs.length > 0) 
+        {
             setNotif({message: 'All fields are required.', style: 'danger'});
             return false;
-            }
+        }
         
         try {
             const newAccount = await createBankAccount(accountData.name, accountData.type);
             
             setNotif('');
+            setUpdateBankAccounts(true);
             setNotif({message: 'Successfully saved.', style: 'success'});
             return true;
         } catch (error) {
