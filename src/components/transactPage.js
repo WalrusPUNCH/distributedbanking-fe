@@ -1,29 +1,31 @@
 ﻿import { useState } from "react";
 import { Notif } from "./notif";
-import { formatNumber, findAccount, transact, trim, capitalize } from "./utils";
+import { formatNumber, trim } from "./utils";
 
 export const TransactPage = (props) => {
-    const users = JSON.parse(localStorage.getItem('users'));
+    const { bankAccounts } = props;
+
     const setNotif = props.setNotif;
     const notif = props.notif;
-    const [accounts, setAccounts] = useState(users);
     const [selectedAccount, setSelectedAccount] = useState({balance: 0});
     const [depositAmount, setDepositAmount] = useState(0);
 
-    const options = accounts.map(user => {
-        return <option value={user.number}>{user.fullname} #{user.number}</option>
+    const options = bankAccounts.map(account => {
+        return <option value={account.id}>{account.name} #{account.id}</option>
     });
 
     const displayBalance = (e) => {
         setNotif(notif);
-        const selectedNumber = e.target.value;
+        const selectedAccountId = e.target.value;
 
-        for(const user of accounts) {
-            if(user.number === selectedNumber) {
-                setSelectedAccount(user);
-                break;
+        for(const bankAccount of bankAccounts) {
+            if(bankAccount.id === selectedAccountId) {
+                setSelectedAccount(bankAccount);
+                return;
             }
         }
+        
+        setSelectedAccount({balance: 0});
     }
 
     const onDeposit = (e) => {
@@ -32,7 +34,7 @@ export const TransactPage = (props) => {
     }
 
     const processTransfer = (e) => {
-        e.preventDefault();
+        /*e.preventDefault();
         const amount = trim(e.target.elements.amount.value);
         const accountNumber = e.target.elements.account.value;
 
@@ -50,9 +52,9 @@ export const TransactPage = (props) => {
         }
         else {
             setNotif({message: `${capitalize(props.page)} failed.`, style: 'danger'});
-        }
+        }*/
     }
-    // 'bx bx-up-arrow-alt'
+    
     const icon = props.page === 'withdraw' ? 'bx bx-down-arrow-alt' : 'bx bx-up-arrow-alt';
 
     return (

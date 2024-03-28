@@ -112,6 +112,19 @@ h1, h2, h3 {
   box-shadow: var(--shadow);
 }
 
+#main-content .identity {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #a7c5eb;
+  padding: 1.5rem;
+  border-radius: .3rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+
 #main-content h3 {
   font-weight: normal;
   text-transform: uppercase;

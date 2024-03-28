@@ -4,6 +4,7 @@ import { MainContent } from "./mainContent";
 import { CreateAccountPage } from "./createAccountPage";
 import { TransferPage } from "./transferPage";
 import { TransactPage } from "./transactPage";
+import {AccountEditModal} from "./accountEditModal";
 
 export const Dashboard = (props) => {
     const [page, setPage] = useState('home');
@@ -64,8 +65,10 @@ export const Dashboard = (props) => {
         modal = <AccountEditModal
             accountName={user.fullname}
             accountNumber={user.number}
-            balance={user.balance} setEditModal={setEditModal}
-            setIsUpdate={setIsUpdate} setNewAccount={setNewAccount} setIsUpdate={setIsUpdate}  />
+            balance={user.balance} 
+            setEditModal={setEditModal}
+            setIsUpdate={setIsUpdate} 
+            setNewAccount={setNewAccount}  />
     }
 
     if(page === 'home') {
@@ -115,58 +118,4 @@ export const Dashboard = (props) => {
             </main>
         )
     }
-}
-
-const AccountEditModal = (props) => {
-    const { accountName, accountNumber, balance, setEditModal, setNewAccount, setIsUpdate } = props;
-    const [account, setAccount] = useState({fullname: accountName, number: accountNumber, balance: balance});
-
-    const closeModal = () => {
-        setEditModal(false);
-    }
-
-    const updateAccount = (e) => {
-        e.preventDefault();
-        console.log("Update");
-        setNewAccount(account);
-        setIsUpdate(true);
-        // close modal
-        setEditModal(false);
-    }
-
-    const editAccountName = (e) => {
-        const name = e.target.value;
-        setAccount({...account, ...{fullname: name}});
-    }
-
-    const editAccountNumber = (e) => {
-        const number = e.target.value;
-        setAccount({...account, ...{number: number}});
-    }
-
-    const editAccountBalance = (e) => {
-        const balance = e.target.value;
-        setAccount({...account, ...{balance: parseFloat(balance) || 0}});
-    }
-
-    return (
-        <div className="overlay">
-            <div className="modal">
-                <form onSubmit={updateAccount}>
-                    <h2 className="title">Edit Account</h2>
-                    <label>Account name</label>
-                    <input name="account-name" onChange={editAccountName} value={account.fullname} autoComplete="off" />
-
-                    <label>Account number</label>
-                    <input type="text" name="amount" onChange={editAccountNumber} disabled value={account.number} autoComplete="off" />
-
-                    <label>Balance</label>
-                    <input type="text" name="balance" onChange={editAccountBalance} value={account.balance} autoComplete="off" />
-
-                    <button type="button" onClick={() => closeModal()} className="btn2 btn-muted">Cancel</button>
-                    <button type="submit" className="btn2">Update Account</button>
-                </form>
-            </div>
-        </div>
-    )
 }

@@ -1,16 +1,53 @@
 ﻿import axios from 'axios';
+import { axiosAuth } from "../actions/axiosAuth";
 import actionTypes from '../actions/actionTypes';
-import ActionTypes from "../actions/actionTypes";
 
-// Function to perform login
 export const loginUser = async (email, password) => {
     try {
-        const response = await axios.post(`${actionTypes.HOST}${ActionTypes.IDENTITY.LOGIN}`, { email, password });
-        return response.data.value.token;
+        const response = await axios.post(`${actionTypes.HOST}${actionTypes.IDENTITY.LOGIN}`, { email, password });
+        return response.data.value;
     } catch (error) {
-        console.error('Error logging in:', error);
+        console.error('Error logging in: ', error);
         throw error;
     }
 };
 
-// Add more functions for other API endpoints as needed
+
+export const getIdentityInformation = async () => {
+    try {
+        const response = await axiosAuth.get(`${actionTypes.HOST}${actionTypes.IDENTITY.INFORMATION}`);
+        return response.data.value;
+    } catch (error) {
+        console.error('Error while getting identity information: ', error);
+        throw error;
+    }
+};
+
+export const updateIdentityInformation = async (newIdentityInformation) => {
+    try {
+        const { documentNumber, issuer, issueDateTime, expirationDateTime } = newIdentityInformation;
+
+        const response = await axiosAuth.post(`${actionTypes.HOST}${actionTypes.IDENTITY.UPDATE_PASSPORT}`,
+            {
+                documentNumber,
+                issuer,
+                issueDateTime,
+                expirationDateTime
+            });
+        
+        return response.data.value;
+    } catch (error) {
+            console.error('Error while updating identity information: ', error);
+        throw error;
+    }
+};
+
+
+export const deleteUserIdentity = async () => {
+    try {
+        await axiosAuth.delete(`${actionTypes.HOST}${actionTypes.IDENTITY.IDENTITY}`);
+    } catch (error) {
+        console.error('Error while delete user identity: ', error);
+        throw error;
+    }
+};

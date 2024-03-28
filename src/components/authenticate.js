@@ -1,25 +1,24 @@
-﻿import React, {useState} from 'react';
+﻿import React, {useEffect, useState} from 'react';
 import { loginUser } from '../api/identity';
 import { Dashboard } from './dashboard';
 import { LoginPage } from './loginPage';
-import { ClientDashboard } from './clientDashboard';
+import {ClientDashboardV2} from "./clientDashboardV2";
 
 export const Authentication = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [notif, setNotif] = useState({message: '', style: ''});
     const [isAdmin, setIsAdmin] = useState(false);
-    const [token, setToken] = useState(null);
+    const [user, setUser] = useState(null);
     
-    const isLoginSuccess = async (email, password) => {
+    const login = async (email, password) => {
         try {
-            const userToken = await loginUser(email, password);
-            //if (userData.isAdmin) {
-            //    setIsAdmin(true);
-            //} else {
+            const userData = await loginUser(email, password);
+            setUser(userData);
+            if (userData.isAdmin) {
+                setIsAdmin(true);
+            } else {
                 setIsAdmin(false);
-            //}
-            setToken(userToken);
-            localStorage.setItem('token', userToken);
+            }
+            localStorage.setItem('user', JSON.stringify(userData));
             setNotif('');
             return true;
         } catch (error) {
@@ -27,28 +26,29 @@ export const Authentication = () => {
             return false;
         }
     }
-
-    const login = async (username, password) => {
-        const success = await isLoginSuccess(username, password);
-        if (success) {
-            setIsLoggedIn(true);
-        }
-    }
-
+    
     const logout = () => {
-        setIsLoggedIn(false);
+        setUser(null);
         setIsAdmin(false);
-        localStorage.removeItem('token')
+        localStorage.removeItem('user')
         setNotif({message: 'You have logged out.', style: 'success'});
     }
 
-    if(isLoggedIn) {
+    useEffect(() => {
+        const userFromStorage = JSON.parse(localStorage.getItem('user'));
+        if (userFromStorage) {
+            setUser(userFromStorage);
+            setIsAdmin(userFromStorage.isAdmin);
+        }
+    }, []); // Empty dependency array ensures this effect runs only once on mount
+    
+    if (user) {
         if(isAdmin) {
-            return <Dashboard /*users={clients}*/ logoutHandler={logout} />
+            return <Dashboard logoutHandler={logout} />
         } else {
-            return <ClientDashboard client={client} /*users={clients}*/ setClient={setClient} logout={logout} />
+            return <ClientDashboardV2 user={user} logout={logout} />
         }
     } else {
-        return <LoginPage loginHandler={login} notif={notif} isLoggedIn={isLoggedIn} />
+        return <LoginPage loginHandler={login} notif={notif} />
     }
 }

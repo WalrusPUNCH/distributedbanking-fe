@@ -1,28 +1,23 @@
 ﻿import React, {useState} from 'react';
 import { Sidebar } from './sidebar';
-import { MainClientContent } from './mainClientContent';
-import { findAccount } from './utils';
 import { TransferPage } from './transferPage';
 import { BudgetApp } from './budgetApp';
+import {MainClientContentV2} from "./mainClientContentV2";
 
 export const ClientDashboard = (props) => {
-    const { logout, client, setClient } = props;
-    const [users, setUsers] = useState(props.users);
+    const { logout, user, setUser } = props;
     const [ page, setPage ] = useState('home');
 
 
     const changePageHandler = (pageName) => {
         setPage(pageName);
-        const currentUser = findAccount(client.number);
-        setClient(currentUser);
     }
 
     if(page === 'home') {
-
         return (
             <main>
-                <Sidebar changePage={changePageHandler} page={page} user={client} logoutHandler={props.logout} />
-                <MainClientContent user={client} />
+                <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout} />
+                <MainClientContentV2 user={user} />
             </main>
         )
     }
@@ -30,8 +25,8 @@ export const ClientDashboard = (props) => {
     if(page === 'budget') {
         return (
             <main>
-                <Sidebar changePage={changePageHandler} page={page} user={client} logoutHandler={props.logout} />
-                <BudgetApp client={client} />
+                <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout} />
+                <BudgetApp client={user} />
             </main>
         )
     }
@@ -39,8 +34,8 @@ export const ClientDashboard = (props) => {
     if(page === 'transfer') {
         return (
             <main>
-                <Sidebar changePage={changePageHandler} page={page} user={client} logoutHandler={props.logout} />
-                <TransferPage isClient="true" client={client} setClient={setClient} users={users} setUsers={setUsers}  />
+                <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout} />
+                <TransferPage isClient="true" client={user} setClient={setUser} /*users={users} setUsers={setUsers} */ />
             </main>
         )
     }
