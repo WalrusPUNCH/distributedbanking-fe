@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap');
+@import url('https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css');
+
 :root {
   --first-color: rgb(246, 244, 237);
   --secondary-color: rgb(219, 204, 163);
@@ -61,6 +63,8 @@ h1, h2, h3 {
 #logo {
   color: var(--first-color);
   margin-bottom: 1.5rem;
+  position: relative;
+  text-align: center; /* Center the text */
 }
 
 #side-menu {
@@ -178,7 +182,7 @@ h1, h2, h3 {
 
 .transaction-item {
   display: grid;
-  grid-template-columns: 200px auto 100px;
+  grid-template-columns: 300px auto 100px;
   padding: .8rem;
 
 }

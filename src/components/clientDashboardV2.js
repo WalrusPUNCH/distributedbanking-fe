@@ -7,6 +7,7 @@ import {deleteUserIdentity, getIdentityInformation, updateIdentityInformation} f
 import {CreateAccountPageV2} from "./createAccountPageV2";
 import {AccountEditModal} from "./accountEditModal";
 import {userBankAccounts} from "../api/bankAccount";
+import {TransactionsHistory} from "./transactionsHistory";
 
 export const ClientDashboardV2 = (props) => {
     const { logout, user } = props;
@@ -147,6 +148,15 @@ export const ClientDashboardV2 = (props) => {
             <main>
                 <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout}/>
                 <TransferPage bankAccounts={bankAccounts} setUpdateBankAccounts={setUpdateBankAccounts} />
+            </main>
+        )
+    }
+
+    if(page === 'history') {
+        return (
+            <main>
+                <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout}/>
+                <TransactionsHistory bankAccounts={bankAccounts} />
             </main>
         )
     }

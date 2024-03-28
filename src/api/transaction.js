@@ -60,7 +60,7 @@ export const makeTransfer = async (transferRequest) => {
 export const getTransactionsHistory = async (accountId) => {
     try {
         const response = await axiosAuth.get(`${actionTypes.HOST}${actionTypes.TRANSACTION.HISTORY}${accountId}`);
-        return response.data;
+        return response.data.value;
     } catch (error) {
         console.error('Error while trying to make transfer: ', error);
         throw error;

@@ -26,7 +26,7 @@ export const MainClientContentV2 = props => {
     
     return (
         <section id="main-content">
-            <h1 className="main">My information</h1>
+            <h1 className="main">My profile</h1>
             {
                 identityInformation !== null
                     ? (<IdentityInformation

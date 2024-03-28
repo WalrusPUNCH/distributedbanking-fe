@@ -2,6 +2,6 @@
 
 export const Logo = () => {
     return(
-        <h1 id="logo"><i className='bx bxs-paper-plane' ></i> Distributed Banking </h1>
+        <h1 id="logo"><i className='bx bxs-bank' ></i> Distributed Banking </h1>
     )
 }
