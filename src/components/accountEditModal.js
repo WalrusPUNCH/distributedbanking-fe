@@ -43,7 +43,7 @@ export const AccountEditModal = (props) => {
                 <form onSubmit={updateAccount}>
                     <h2 className="title">Edit Document Information</h2>
                     <label>Document number</label>
-                    <input name="document-number" onChange={editDocumentNumber} value={userInfo.documentNumber}
+                    <input name="documentNumber" onChange={editDocumentNumber} value={userInfo.documentNumber}
                            autoComplete="off"/>
 
                     <label>Issuer</label>

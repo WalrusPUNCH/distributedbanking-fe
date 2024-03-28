@@ -15,6 +15,12 @@
         ACCOUNT_BY_ID: 'api/account/',
         OWNED_BY_USER: 'api/account/owned/',
         USERS_ACCOUNTS: 'api/account/my',
+    },
+    TRANSACTION: {
+        DEPOSIT: 'api/transaction/deposit',
+        WITHDRAWAL: 'api/transaction/withdraw',
+        TRANSFER: 'api/transaction/transfer',
+        HISTORY: 'api/transaction/history/'
     }
 };
 

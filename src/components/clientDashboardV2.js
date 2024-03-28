@@ -18,6 +18,7 @@ export const ClientDashboardV2 = (props) => {
     const [newAccount, setNewAccount] = useState(null);
     const [identityInformation, setIdentityInformation] = useState(null);
     const [bankAccounts, setBankAccounts] = useState([]);
+    const [updateBankAccounts, setUpdateBankAccounts] = useState(false);
 
     
     const changePageHandler = (pageName) => {
@@ -76,13 +77,14 @@ export const ClientDashboardV2 = (props) => {
             try {
                 const accounts = await userBankAccounts();
                 setBankAccounts(accounts);
+                setUpdateBankAccounts(false);
             } catch (error) {
                 console.error("Error fetching bank accounts: ", error);
             }
         };
 
         fetchBankAccounts();
-    });
+    }, [updateBankAccounts]);
     
     let modal = null;
     if(editModal) {
@@ -124,7 +126,7 @@ export const ClientDashboardV2 = (props) => {
         return (
             <main>
                 <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout}/>
-                <TransactPage bankAccounts={bankAccounts} notif={notif} setNotif={setNotif} type="add" page={page} />
+                <TransactPage bankAccounts={bankAccounts} setUpdateBankAccounts={setUpdateBankAccounts} notif={notif} setNotif={setNotif} page={page} />
             </main>
         )
     }
@@ -133,7 +135,7 @@ export const ClientDashboardV2 = (props) => {
         return (
             <main>
                 <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout}/>
-                <TransactPage bankAccounts={bankAccounts} notif={notif} setNotif={setNotif} type="subtract" page={page} />
+                <TransactPage bankAccounts={bankAccounts} setUpdateBankAccounts={setUpdateBankAccounts} notif={notif} setNotif={setNotif} page={page} />
             </main>
         )
     }
@@ -142,7 +144,7 @@ export const ClientDashboardV2 = (props) => {
         return (
             <main>
                 <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout}/>
-                <TransferPage /*users={users} setUsers={setUsers}*/ />
+                <TransferPage bankAccounts={bankAccounts} setUpdateBankAccounts={setUpdateBankAccounts} />
             </main>
         )
     }

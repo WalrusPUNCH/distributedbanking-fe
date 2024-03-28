@@ -1,16 +1,17 @@
-﻿import React from "react";
+﻿import React, { useState } from 'react';
 import { AccountActionButtons } from "./accountActionButtons";
 import { formatNumber } from "./utils";
 
 export const Account = (props) => {
-    const { accountId, name, type, balance, setDeleteAccountId } = props;
+    const { accountId, name, type, balance, securityCode, setDeleteAccountId } = props;
     
     return (
         <div className="account">
             <div className="details">
-                <AccountHolder name={name} />
-                <AccountType type={type} />
+                <AccountName name={name} />
                 <AccountNumber accountId={accountId} />
+                <AccountType type={type} />
+                <AccountSecurityCode securityCode={securityCode} />
                 <AccountActionButtons
                     accountId={accountId}
                     name={name}
@@ -21,7 +22,7 @@ export const Account = (props) => {
     )
 }
 
-export const AccountHolder = (props) => {
+export const AccountName = (props) => {
     return (
         <h1>{props.name}</h1>
     )
@@ -47,4 +48,25 @@ export const AccountBalance = (props) => {
     return (
         <div className="balance">{balance}</div>
     )
+}
+
+export const AccountSecurityCode = (props) => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    const toggleVisibility = () => {
+        setIsVisible(!isVisible);
+    };
+
+    return (
+        <div onClick={toggleVisibility} style={{ cursor: 'pointer' }}>
+            { isVisible 
+                ? (<div>{props.securityCode}</div>) 
+                : (
+                    <div style={{color: 'transparent', textShadow: '0 0 3px rgba(0, 0, 0, 0.8)'}}>
+                    Click to see security code
+                    </div>
+                )
+            }
+        </div>
+    );
 }

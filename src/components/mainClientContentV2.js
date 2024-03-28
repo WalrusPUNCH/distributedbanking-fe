@@ -36,6 +36,7 @@ export const MainClientContentV2 = props => {
                              name={account.name}
                              type={account.type}
                              balance={account.balance}
+                             securityCode={account.securityCode}
                              setDeleteAccountId={setDeleteAccountId}
                     />
                 ))}
