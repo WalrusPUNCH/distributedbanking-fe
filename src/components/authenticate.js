@@ -3,9 +3,11 @@ import { loginUser } from '../api/identity';
 import { Dashboard } from './dashboard';
 import { LoginPage } from './loginPage';
 import {ClientDashboardV2} from "./clientDashboardV2";
+import {RegistrationPage} from "./registrationPage";
 
 export const Authentication = () => {
     const [notif, setNotif] = useState({message: '', style: ''});
+    const [isRegistration, setIsRegistration] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [user, setUser] = useState(null);
     
@@ -49,6 +51,11 @@ export const Authentication = () => {
             return <ClientDashboardV2 user={user} logout={logout} />
         }
     } else {
-        return <LoginPage loginHandler={login} notif={notif} />
+        if (isRegistration){
+            return <RegistrationPage setIsRegistration={setIsRegistration} />
+        }
+        else{
+            return <LoginPage loginHandler={login} notif={notif} setIsRegistration={setIsRegistration} />
+        }
     }
 }

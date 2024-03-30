@@ -46,6 +46,11 @@ h1, h2, h3 {
   max-width: 800px;
 }
 
+#registration #form {
+  justify-content: center;
+  margin: auto;
+}
+
 /* Animation */
 @keyframes fadein {
   from { opacity: 0; transform: translateY(-10px); }
@@ -243,6 +248,13 @@ label {
   text-align: center;
 }
 
+
+#registration #logo {
+  color: var(--text-color);
+  font-size: 2.8rem;
+  text-align: center;
+}
+
 #login label, label {
   text-transform: uppercase;
   margin-bottom: .3rem;
@@ -434,4 +446,8 @@ input:disabled {
 
 .title {
   text-transform: capitalize;
+}
+
+.center {
+  text-align: center;
 }

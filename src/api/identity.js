@@ -2,6 +2,27 @@
 import { axiosAuth } from "../actions/axiosAuth";
 import actionTypes from '../actions/actionTypes';
 
+export const registerCustomer = async (newCustomer) => {
+    try {
+        const { firstName, lastName, birthDate, phoneNumber, email, password, passport } = newCustomer;
+        
+        const response = await axios.post(`${actionTypes.HOST}${actionTypes.IDENTITY.REGISTER_CUSTOMER}`, 
+            {
+                firstName,
+                lastName,
+                birthDate,
+                phoneNumber,
+                email,
+                password,
+                passport
+            });
+        return response.data;
+    } catch (error) {
+        console.error('Error logging in: ', error);
+        throw error;
+    }
+};
+
 export const loginUser = async (email, password) => {
     try {
         const response = await axios.post(`${actionTypes.HOST}${actionTypes.IDENTITY.LOGIN}`, { email, password });
