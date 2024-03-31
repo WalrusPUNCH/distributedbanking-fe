@@ -1,9 +1,9 @@
 ﻿import React, {useEffect, useState} from 'react';
 import { loginUser } from '../api/identity';
-import { Dashboard } from './dashboard';
 import { LoginPage } from './loginPage';
 import {ClientDashboardV2} from "./clientDashboardV2";
 import {RegistrationPage} from "./registrationPage";
+import {DashboardV2} from "./dashboardV2";
 
 export const Authentication = () => {
     const [notif, setNotif] = useState({message: '', style: ''});
@@ -46,7 +46,7 @@ export const Authentication = () => {
     
     if (user) {
         if(isAdmin) {
-            return <Dashboard logoutHandler={logout} />
+            return <DashboardV2 user={user} logout={logout} />
         } else {
             return <ClientDashboardV2 user={user} logout={logout} />
         }

@@ -5,12 +5,10 @@ export const Sidebar = (props) => {
     const { user, logoutHandler, changePage, page } = props;
     let menu = null;
 
-    // not regular user but an admin
     if(user.isAdmin) {
         menu = <SideMenu changePage={changePage} page={page} logoutHandler={logoutHandler} />;
     }
 
-    // regular user
     if(!user.isAdmin) {
         menu = <ClientMenu changePage={changePage} page={page} logoutHandler={logoutHandler} />
     }
@@ -44,6 +42,8 @@ export const SideMenu = (props) => {
     return (
         <ul>
             <SideLink onClickHandler={changePage} active={page} page="home" icon="bx bx-home" text="Home" />
+            <SideLink onClickHandler={changePage} active={page} page="history" icon="bx bx-history" text="History" />
+            <SideLink onClickHandler={changePage} active={page} page="register-admin" icon="bx bxs-user-badge" text="Register admin" />
             <SideLink onClickHandler={logoutHandler} active={page} icon="bx bx-log-out" text="Logout" />
         </ul>
     )

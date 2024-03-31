@@ -3,7 +3,7 @@ import { Sidebar } from './sidebar';
 import { TransferPage } from './transferPage';
 import {MainClientContentV2} from "./mainClientContentV2";
 import {TransactPage} from "./transactPage";
-import {deleteUserIdentity, getIdentityInformation, updateIdentityInformation} from "../api/identity";
+import {deleteUserIdentity, getCustomerIdentityInformation, updateIdentityInformation} from "../api/identity";
 import {CreateAccountPageV2} from "./createAccountPageV2";
 import {AccountEditModal} from "./accountEditModal";
 import {userBankAccounts} from "../api/bankAccount";
@@ -38,7 +38,7 @@ export const ClientDashboardV2 = (props) => {
     useEffect(() => {
         const fetchIdentityInformation = async () => {
             try {
-                const identityInformationModel = await getIdentityInformation();
+                const identityInformationModel = await getCustomerIdentityInformation();
                 setIdentityInformation(identityInformationModel);
             } catch (error) {
                 console.error("Error fetching identity information: ", error);

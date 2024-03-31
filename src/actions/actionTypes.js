@@ -8,12 +8,12 @@
         LOGOUT: 'api/identity/logout',
         IDENTITY: 'api/identity',
         UPDATE_PASSPORT: 'api/identity/customer/update_passport',
-        INFORMATION: 'api/identity/customer/information',
+        CUSTOMER_INFORMATION: 'api/identity/customer/information',
+        WORKER_INFORMATION: 'api/identity/worker/information',
     },
     ACCOUNT: {
         ACCOUNT: 'api/account',
         ACCOUNT_BY_ID: 'api/account/',
-        OWNED_BY_USER: 'api/account/owned/',
         USERS_ACCOUNTS: 'api/account/my',
     },
     TRANSACTION: {

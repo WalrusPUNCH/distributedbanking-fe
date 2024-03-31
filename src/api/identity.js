@@ -23,6 +23,29 @@ export const registerCustomer = async (newCustomer) => {
     }
 };
 
+export const registerAdmin = async (newAdmin) => {
+    try {
+        const { firstName, lastName, birthDate, phoneNumber, email, password, passport, position, address } = newAdmin;
+
+        const response = await axios.post(`${actionTypes.HOST}${actionTypes.IDENTITY.REGISTER_ADMIN}`,
+            {
+                firstName,
+                lastName,
+                birthDate,
+                phoneNumber,
+                email,
+                password,
+                passport,
+                position,
+                address
+            });
+        return response.data;
+    } catch (error) {
+        console.error('Error logging in: ', error);
+        throw error;
+    }
+};
+
 export const loginUser = async (email, password) => {
     try {
         const response = await axios.post(`${actionTypes.HOST}${actionTypes.IDENTITY.LOGIN}`, { email, password });
@@ -34,12 +57,22 @@ export const loginUser = async (email, password) => {
 };
 
 
-export const getIdentityInformation = async () => {
+export const getCustomerIdentityInformation = async () => {
     try {
-        const response = await axiosAuth.get(`${actionTypes.HOST}${actionTypes.IDENTITY.INFORMATION}`);
+        const response = await axiosAuth.get(`${actionTypes.HOST}${actionTypes.IDENTITY.CUSTOMER_INFORMATION}`);
         return response.data.value;
     } catch (error) {
-        console.error('Error while getting identity information: ', error);
+        console.error('Error while getting customer identity information: ', error);
+        throw error;
+    }
+};
+
+export const getWorkerIdentityInformation = async () => {
+    try {
+        const response = await axiosAuth.get(`${actionTypes.HOST}${actionTypes.IDENTITY.WORKER_INFORMATION}`);
+        return response.data.value;
+    } catch (error) {
+        console.error('Error while getting worker identity information: ', error);
         throw error;
     }
 };

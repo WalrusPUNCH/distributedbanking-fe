@@ -88,6 +88,7 @@ export const TransactionsHistory = props => {
                             accountId={selectedAccount.id}
                             name={selectedAccount.name}
                             type={selectedAccount.type}
+                            owner={selectedAccount.owner}
                             balance={selectedAccount.balance}
                         />) 
                         : null

@@ -42,6 +42,11 @@ export const AccountNumber = (props) => {
     )
 }
 
+export const AccountOwner = (props) => {
+    return (
+        <div>Owned by '{props.owner}'</div>
+    )
+}
 
 export const AccountBalance = (props) => {
     const balance = props.balance;

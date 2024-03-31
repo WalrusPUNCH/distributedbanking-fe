@@ -3,7 +3,7 @@ import {IdentityActionButtons} from "./identityActionButtons";
 
 export const IdentityInformation = (props) => {
 
-    const { firstName, lastName, phoneNumber, email, setEditModal, setDeleteUser } = props;
+    const { firstName, lastName, phoneNumber, email, address, setEditModal, setDeleteUser } = props;
     
     return (
         <div className="identity">
@@ -11,9 +11,13 @@ export const IdentityInformation = (props) => {
                 <User firstName={firstName} lastName={lastName} />
                 <PhoneNumber phoneNumber={phoneNumber} />
                 <Email email={email} />
-                <IdentityActionButtons
-                    setEditModal={setEditModal}
-                    setDeleteUser={setDeleteUser} />
+                {address !== null ? (<Address address={address}/>) : null}
+                {setEditModal !== null && setDeleteUser !== null
+                ? (<IdentityActionButtons
+                        setEditModal={setEditModal}
+                        setDeleteUser={setDeleteUser} />)
+                : null}
+                
             </div>
         </div>
     )
@@ -41,5 +45,13 @@ export const Email = (props) => {
 
     return (
         <div>{email}</div>
+    )
+}
+
+export const Address = (props) => {
+    const { country, region, city, street, building, postalCode } = props.address;
+
+    return (
+        <h3>Home address: {postalCode}, {country}, {region}, {city}, {street} street, #{building}</h3>
     )
 }
