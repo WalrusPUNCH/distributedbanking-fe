@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { Logo } from './logo';
 import { Notif } from './notif';
-import {registerAdmin} from "../api/identity";
+import { registerAdmin } from "../api/identity";
 
 export const WorkerRegistrationPage = () => {
     const [notif, setNotif] = useState({message: '', style: ''});

@@ -1,4 +1,4 @@
-﻿import {useState} from "react";
+﻿import { useState } from "react";
 
 export const AccountEditModal = (props) => {
     const { documentNumber, issuer, issueDateTime, expirationDateTime, setEditModal, setNewAccount, setIsUpdate } = props;

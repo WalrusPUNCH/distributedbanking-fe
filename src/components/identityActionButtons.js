@@ -40,6 +40,7 @@ export const IdentityActionButtons = (props) => {
     )
 }
 
+
 export const IdentityActionButton = (props) => {
     const { icon, text, actionType, setEditModal, setShowConfirmationBox } = props;
 

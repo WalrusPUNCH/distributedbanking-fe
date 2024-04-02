@@ -1,15 +1,15 @@
 ﻿import React, {useEffect, useState} from 'react';
 import { Sidebar } from './sidebar';
 import { TransferPage } from './transferPage';
-import {MainClientContentV2} from "./mainClientContentV2";
-import {TransactPage} from "./transactPage";
-import {deleteUserIdentity, getCustomerIdentityInformation, updateIdentityInformation} from "../api/identity";
-import {CreateAccountPageV2} from "./createAccountPageV2";
-import {AccountEditModal} from "./accountEditModal";
-import {userBankAccounts} from "../api/bankAccount";
-import {TransactionsHistory} from "./transactionsHistory";
+import { MainContentClient } from "./mainContentClient";
+import { TransactPage } from "./transactPage";
+import { deleteUserIdentity, getCustomerIdentityInformation, updateIdentityInformation } from "../api/identity";
+import { CreateAccountPage } from "./createAccountPage";
+import { AccountEditModal } from "./accountEditModal";
+import { userBankAccounts } from "../api/bankAccount";
+import { TransactionsHistory } from "./transactionsHistory";
 
-export const ClientDashboardV2 = (props) => {
+export const DashboardClient = (props) => {
     const { logout, user } = props;
     const [page, setPage] = useState('home');
     const [notif, setNotif] = useState({message: '', style: ''});
@@ -106,11 +106,11 @@ export const ClientDashboardV2 = (props) => {
         return (
             <main>
                 <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout}/>
-                <MainClientContentV2 identityInformation={identityInformation}
-                                     accounts={bankAccounts}
-                                     setUpdateBankAccounts={setUpdateBankAccounts}
-                                     setEditModal={setEditModal}
-                                     setDeleteUser={setDeleteUser} />
+                <MainContentClient identityInformation={identityInformation}
+                                   accounts={bankAccounts}
+                                   setUpdateBankAccounts={setUpdateBankAccounts}
+                                   setEditModal={setEditModal}
+                                   setDeleteUser={setDeleteUser} />
                 {modal}
             </main>
         )
@@ -120,7 +120,7 @@ export const ClientDashboardV2 = (props) => {
         return (
             <main>
                 <Sidebar changePage={changePageHandler} page={page} user={user} logoutHandler={logout}/>
-                <CreateAccountPageV2 setUpdateBankAccounts={setUpdateBankAccounts}/>
+                <CreateAccountPage setUpdateBankAccounts={setUpdateBankAccounts}/>
             </main>
         )
     }

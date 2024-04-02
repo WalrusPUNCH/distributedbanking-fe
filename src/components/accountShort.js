@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { formatNumber } from "./utils";
-import {AccountBalance, AccountName, AccountNumber, AccountOwner, AccountSecurityCode, AccountType} from "./account";
+import { AccountBalance, AccountName, AccountNumber, AccountOwner, AccountSecurityCode, AccountType } from "./account";
 
 export const AccountShort = (props) => {
     const { accountId, name, type, securityCode, owner, balance } = props;
@@ -11,8 +11,8 @@ export const AccountShort = (props) => {
                 <AccountName name={name} />
                 <AccountNumber accountId={accountId} />
                 <AccountType type={type} />
-                {securityCode !== '' ? (<AccountSecurityCode securityCode={securityCode}/>) : null}
-                {owner !== '' ? (<AccountOwner owner={owner}/>) : null}
+                {typeof securityCode !== "undefined" && securityCode !== '' ? (<AccountSecurityCode securityCode={securityCode}/>) : null}
+                {typeof owner !== "undefined" && owner !== '' ? (<AccountOwner owner={owner}/>) : null}
             </div>
             <AccountBalance balance={formatNumber(balance)} />
         </div>

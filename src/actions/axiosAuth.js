@@ -3,8 +3,6 @@
 export const axiosAuth = axios.create();
 
 axiosAuth.defaults.baseURL = 'http://localhost:5221/';
-
-// intercept every request made using axiosAuth client
 axiosAuth.interceptors.request.use(
     (config) => {
         const token = JSON.parse(localStorage.getItem('user')).token;

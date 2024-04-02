@@ -4,7 +4,7 @@ import { deleteBankAccount } from "../api/bankAccount";
 import { IdentityInformation } from "./identityInformation";
 import { delay } from "./utils";
 
-export const MainClientContentV2 = props => {
+export const MainContentClient = props => {
     const { identityInformation, accounts, setUpdateBankAccounts, setEditModal, setDeleteUser } = props;
     
     const [deleteAccountId, setDeleteAccountId] = useState(null);

@@ -22,6 +22,7 @@ export const Account = (props) => {
     )
 }
 
+
 export const AccountName = (props) => {
     return (
         <h1>{props.name}</h1>
@@ -42,11 +43,13 @@ export const AccountNumber = (props) => {
     )
 }
 
+
 export const AccountOwner = (props) => {
     return (
         <div>Owned by '{props.owner}'</div>
     )
 }
+
 
 export const AccountBalance = (props) => {
     const balance = props.balance;
@@ -54,6 +57,7 @@ export const AccountBalance = (props) => {
         <div className="balance">{balance}</div>
     )
 }
+
 
 export const AccountSecurityCode = (props) => {
     const [isVisible, setIsVisible] = useState(false);

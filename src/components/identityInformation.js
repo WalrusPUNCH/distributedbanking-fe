@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import {IdentityActionButtons} from "./identityActionButtons";
+import { IdentityActionButtons } from "./identityActionButtons";
 
 export const IdentityInformation = (props) => {
 
@@ -11,7 +11,7 @@ export const IdentityInformation = (props) => {
                 <User firstName={firstName} lastName={lastName} />
                 <PhoneNumber phoneNumber={phoneNumber} />
                 <Email email={email} />
-                {address !== null ? (<Address address={address}/>) : null}
+                {address !== null && typeof address !== "undefined" ? (<Address address={address}/>) : null}
                 {setEditModal !== null && setDeleteUser !== null
                 ? (<IdentityActionButtons
                         setEditModal={setEditModal}

@@ -57,6 +57,7 @@ export const makeTransfer = async (transferRequest) => {
     }
 };
 
+
 export const getTransactionsHistory = async (accountId) => {
     try {
         const response = await axiosAuth.get(`${actionTypes.HOST}${actionTypes.TRANSACTION.HISTORY}${accountId}`);

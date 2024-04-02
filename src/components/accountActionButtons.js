@@ -1,4 +1,4 @@
-﻿import React, {useState} from "react";
+﻿import React, { useState } from "react";
 import ConfirmationDialog from "./confirmationDialog";
 
 export const AccountActionButtons = (props) => {
@@ -36,6 +36,7 @@ export const AccountActionButtons = (props) => {
         </div>        
     )
 }
+
 
 export const AccountActionButton = (props) => {
     const { icon, text, actionType, setShowConfirmationBox } = props;

@@ -2,7 +2,6 @@
     HOST: 'http://localhost:5221/',
     IDENTITY: {
         REGISTER_CUSTOMER: 'api/identity/register/customer',
-        REGISTER_WORKER: 'api/identity/register/worker',
         REGISTER_ADMIN: 'api/identity/register/admin',
         LOGIN: 'api/identity/login',
         LOGOUT: 'api/identity/logout',

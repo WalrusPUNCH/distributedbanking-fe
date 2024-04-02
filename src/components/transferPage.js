@@ -1,7 +1,7 @@
-﻿import React, {useEffect, useState} from "react";
+﻿import React, { useEffect, useState } from "react";
 import { Notif } from "./notif";
-import {formatNumber, trim} from "./utils";
-import {makeTransfer} from "../api/transaction";
+import { formatNumber, trim } from "./utils";
+import { makeTransfer } from "../api/transaction";
 
 export const TransferPage = (props) => {
     const { bankAccounts, setUpdateBankAccounts } = props;

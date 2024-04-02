@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { Logo } from './logo';
 import { Notif } from './notif';
-import {registerCustomer} from "../api/identity";
+import { registerCustomer } from "../api/identity";
 
 export const RegistrationPage = (props) => {
     const { setIsRegistration } = props;
